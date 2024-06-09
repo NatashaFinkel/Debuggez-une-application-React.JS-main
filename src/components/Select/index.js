@@ -52,6 +52,7 @@ const Select = ({
         <input type="hidden" value={value || ""} name={name} />
         <button
           type="button"
+          aria-label="collapse-arrow"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
           onClick={(e) => {
