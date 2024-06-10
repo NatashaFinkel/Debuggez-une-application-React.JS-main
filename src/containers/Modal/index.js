@@ -15,6 +15,7 @@ const Modal = ({ opened, Content, children }) => {
             <button
               type="button"
               data-testid="close-modal"
+              aria-label="close-modal-btn"
               onClick={() => setIsOpened(false)}
             >
               <Icon name="close" />
