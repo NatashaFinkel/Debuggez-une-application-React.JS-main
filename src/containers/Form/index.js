@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); })
 
-const Form = ({ onSuccess, onError }) => {
+// eslint-disable-next-line react/prop-types
+const Form = ({ onSuccess =  () => null, onError = () => null }) => {
   const [sending, setSending] = useState(false);
   const sendContact = useCallback(
     async (evt) => {
@@ -53,14 +54,14 @@ const Form = ({ onSuccess, onError }) => {
   );
 };
 
-Form.propTypes = {
+/* Form.propTypes = {
   onError: PropTypes.func,
   onSuccess: PropTypes.func,
 }
-
-Form.defaultProps = {
+ */
+/* Form.defaultProps = {
   onError: () => null,
   onSuccess: () => null,
-}
+} */
 
 export default Form;

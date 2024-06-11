@@ -1,8 +1,9 @@
 /* istanbul ignore file */
-import PropTypes from "prop-types";
+
 import "./style.scss";
 
-const Logo = ({ size }) => (
+// eslint-disable-next-line react/prop-types
+const Logo = ({ size = "small" }) => (
   <div className="Logo">
     <svg
       width={size === "large" ? "160" : "130"}
@@ -111,12 +112,5 @@ const Logo = ({ size }) => (
     </svg>
   </div>
 );
-
-Logo.propTypes = {
-  size: PropTypes.string,
-}
-Logo.defaultProps = {
-  size: 'small'
-}
 
 export default Logo;
