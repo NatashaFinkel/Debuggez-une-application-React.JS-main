@@ -292,6 +292,7 @@
             "description": "Oeuvre à la coopération entre le secteur public et le privé.",
             "date": "2022-01-29T20:28:45.744Z",
             "cover": "/images/evangeline-shaw-nwLTVwb7DbU-unsplash1.png",
+            "slideIndex": 0,
             "id": "slide-1" 
         },
         {
@@ -299,6 +300,7 @@
             "description": "Conférences sur le design de demain dans le digital",
             "date": "2022-03-29T20:28:45.744Z",
             "cover": "/images/teemu-paananen-bzdhc5b3Bxs-unsplash1.png",
+            "slideIndex": 1,
             "id": "slide-2" 
         },
         {
@@ -306,6 +308,7 @@
             "description": "Rencontres de spécialistes des Sneakers Européens.",
             "date": "2022-05-29T20:28:45.744Z",
             "cover": "/images/jakob-dalbjorn-cuKJre3nyYc-unsplash1.png",
+            "slideIndex": 2,
             "id": "slide-3" 
         }
     ]
