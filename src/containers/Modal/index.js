@@ -1,4 +1,3 @@
-// import PropTypes from "prop-types";
 import { useState } from "react";
 import Icon from "../../components/Icon";
 import "./style.scss";
@@ -27,15 +26,4 @@ const Modal = ({ opened = false, Content, children }) => {
     </>
   );
 };
-/* 
-Modal.defaultProps = {
-  opened: false,
-}
-
-Modal.propTypes = {
-  opened: PropTypes.bool,
-  Content: PropTypes.node.isRequired,
-  children: PropTypes.func.isRequired,
-} */
-
 export default Modal;
