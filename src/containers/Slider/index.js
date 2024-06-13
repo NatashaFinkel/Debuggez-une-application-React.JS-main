@@ -18,12 +18,12 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, [byDateDesc]);
 
-  const sliderSpans = byDateDesc?.map((_event, slideIndex) => (
+  const sliderDots = byDateDesc?.map((_event, slideIndex) => (
     <div
       // eslint-disable-next-line react/no-array-index-key
       key={slideIndex}
-      className={`slider-span ${index === slideIndex ? 'active' : ''}`}
-      id={`slider-span-${slideIndex}`}
+      className={`dot ${index === slideIndex ? 'active' : ''}`}
+      id={`slide-numéro-${slideIndex}`}
     />
   ));
 
@@ -44,7 +44,7 @@ const Slider = () => {
             </div>
           </div>
           <div className="SlideCard__paginationContainer">
-            <div key={`pagination_${event.slideIndex}`} className="SlideCard__pagination">{sliderSpans}</div>
+            <div key={`pagination_${event.slideIndex}`} className="SlideCard__pagination">{sliderDots}</div>
           </div>
         </>
       ))}
