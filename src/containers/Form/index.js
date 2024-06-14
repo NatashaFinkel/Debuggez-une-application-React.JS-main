@@ -8,33 +8,24 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 // eslint-disable-next-line react/prop-types
 const Form = ({ onSuccess = () => null, onError = () => null }) => {
   const [sending, setSending] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState('');
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
-      // eslint-disable-next-line no-alert
-      setFeedbackMessage("Message envoyé !");
-      setSending(true);
-
+      setSending("Action en cours");
       // We try to call mockContactApi
       try {
         await mockContactApi();
-        setSending(false);
+        setSending("success");
+        onSuccess();
       } catch (err) {
-        setSending(false);
+        setSending("error");
         onError(err);
-      }finally{
-        setTimeout(() => {
-          setFeedbackMessage('');
-        }, 300);
       }
     },
     [onSuccess, onError]
   );
 
   return (
-    <div>
-
       <form onSubmit={sendContact}>
         <div className="row">
           <div className="col">
@@ -49,14 +40,7 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
             />
             <Field placeholder="" label="Email" />
             <div className="submitBtn-and-feedback">
-              <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
-                {sending ? "En cours" : "Envoyer"}
-              </Button>
-              {feedbackMessage && (
-                <div className="feedback-message">
-                  {feedbackMessage}
-                </div>
-              )}
+              <Button type={BUTTON_TYPES.SUBMIT} disabled={sending === "Action en cours"} />
             </div>
           </div>
           <div className="col">
@@ -68,7 +52,6 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
           </div>
         </div>
       </form>
-    </div>
   );
 };
 export default Form;
