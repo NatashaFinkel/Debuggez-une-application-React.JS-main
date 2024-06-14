@@ -6,7 +6,7 @@ export const BUTTON_TYPES = {
 };
 
 // eslint-disable-next-line react/prop-types
-const Button = ({ title = "", onClick = () => null, type, disabled = false, children = null }) => {
+const Button = ({ title, onClick, type, disabled, children }) => {
   switch (type) {
     case BUTTON_TYPES.DEFAULT:
       return (
