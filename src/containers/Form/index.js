@@ -11,12 +11,15 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
-      setSending("Envoyer");
+      setSending(false);
       // We try to call mockContactApi
       try {
         await mockContactApi();
-        setSending("success");
         onSuccess();
+        setSending(true);
+       setTimeout(() => {
+          setSending(false);
+        }, 500); 
       } catch (err) {
         setSending("error");
         onError(err);
@@ -26,32 +29,34 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
   );
 
   return (
-      <form onSubmit={sendContact}>
-        <div className="row">
-          <div className="col">
-            <Field placeholder="" label="Nom" />
-            <Field placeholder="" label="Prénom" />
-            <Select
-              selection={["Personel", "Entreprise"]}
-              onChange={() => null}
-              label="Personel / Entreprise"
-              type="large"
-              titleEmpty
-            />
-            <Field placeholder="" label="Email" />
-            <div className="submitBtn-and-feedback">
-              <Button type={BUTTON_TYPES.SUBMIT} disabled={sending === "Envoyer"}>Envoyer</Button>
-            </div>
-          </div>
-          <div className="col">
-            <Field
-              placeholder="message"
-              label="Message"
-              type={FIELD_TYPES.TEXTAREA}
-            />
+    <form onSubmit={sendContact}>
+      <div className="row">
+        <div className="col">
+          <Field placeholder="" label="Nom" />
+          <Field placeholder="" label="Prénom" />
+          <Select
+            selection={["Personel", "Entreprise"]}
+            onChange={() => null}
+            label="Personel / Entreprise"
+            type="large"
+            titleEmpty
+          />
+          <Field placeholder="" label="Email" />
+          <div className="submitBtn-and-feedback">
+            <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
+              {sending ? "En cours" : "Envoyer"}
+            </Button>
           </div>
         </div>
-      </form>
+        <div className="col">
+          <Field
+            placeholder="message"
+            label="Message"
+            type={FIELD_TYPES.TEXTAREA}
+          />
+        </div>
+      </div>
+    </form>
   );
 };
 export default Form;
