@@ -11,7 +11,7 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
-      setSending("Action en cours");
+      setSending("Envoyer");
       // We try to call mockContactApi
       try {
         await mockContactApi();
@@ -40,7 +40,7 @@ const Form = ({ onSuccess = () => null, onError = () => null }) => {
             />
             <Field placeholder="" label="Email" />
             <div className="submitBtn-and-feedback">
-              <Button type={BUTTON_TYPES.SUBMIT} disabled={sending === "Action en cours"} />
+              <Button type={BUTTON_TYPES.SUBMIT} disabled={sending === "Envoyer"}>Envoyer</Button>
             </div>
           </div>
           <div className="col">
