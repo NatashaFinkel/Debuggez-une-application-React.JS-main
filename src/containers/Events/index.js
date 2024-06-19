@@ -30,8 +30,13 @@ const EventList = () => {
     setCurrentPage(1);
     setType(evtType);
   };
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+  function CreatePagination(events, maxPerPage) {
+    return Math.floor((events?.length || 0) / maxPerPage) + 1;
+  }
+
   const typeList = new Set(data?.events.map((event) => event.type));
+  const pageNumber = CreatePagination(filteredEvents, PER_PAGE);
+
   return (
     <>
       {error && <div>An error occured</div>}
