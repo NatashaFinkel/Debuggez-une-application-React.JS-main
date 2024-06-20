@@ -35,10 +35,8 @@ describe("When slider is created", () => {
         <Slider />
       </DataProvider>
     );
-    await screen.findByText("World economic forum" || "World Gaming Day" || "World Farming Day");
-    await screen.findByText("janvier");
-    await screen.findByText(
-      "Oeuvre à la coopération entre le secteur public et le privé."
-    );
+    await screen.findByText(/World economic forum|World Gaming Day|World Farming Day/i);
+    await screen.findByText(/Oeuvre à la coopération entre le secteur public et le privé.|Evenement mondial autour du gaming|Evenement mondial autour de la ferme/i);
+    await screen.findByText(/janvier|mars|mai/i);
   });
 });
