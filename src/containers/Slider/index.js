@@ -21,34 +21,34 @@ const Slider = () => {
   const sliderDots = byDateDesc?.map((_event, slideIndex) => (
     <div
       // eslint-disable-next-line react/no-array-index-key
-/*       key={slideIndex} */
+      key={slideIndex}
       className={`dot ${index === slideIndex ? 'active' : ''}`}
-      id={`slide-numéro-${slideIndex}-${_event.title}`} 
+      id={`slide-numéro-${slideIndex}-${_event.title}`}
     />
   ));
 
   return (
     <div className="SlideCardList">
-      {byDateDesc?.map((event, idx) => (
+      {byDateDesc && byDateDesc.length > 0 && (
         <>
-          <div /* key={event.slide} */ id={event.slide} className={`SlideCard SlideCard--${index === idx ? "display" : "hide"
-            }`}
+          <div
+            key={byDateDesc[index].slide} id={byDateDesc[index].slide}
+            className="SlideCard SlideCard--display"
           >
-            <img src={event.cover} /* key={event.cover}  */alt="forum" />
-            <div className="SlideCard__descriptionContainer" /* key="PPP" */>
-              <div className="SlideCard__description" /*  key="LLL" */>
-                <h3 /* key={event.title} */>{event.title}</h3>
-                <p /*  key={event.description} */>{event.description}</p>
-                <div /*  key={event.date} */>{getMonth(new Date(event.date))}</div>
+            <img src={byDateDesc[index].cover} key={byDateDesc[index].cover} alt="forum" />
+            <div className="SlideCard__descriptionContainer">
+              <div className="SlideCard__description">
+                <h3 key={byDateDesc[index].title}>{byDateDesc[index].title}</h3>
+                <p key={byDateDesc[index].description}>{byDateDesc[index].description}</p>
+                <div key={byDateDesc[index].date}>{getMonth(new Date(byDateDesc[index].date))}</div>
               </div>
             </div>
           </div>
-          <div className="SlideCard__paginationContainer" /* key={`pagination_${event.WWW}`} */ >
-          
-            <div /* key={`pagination_${event.WWW}`}  */className="SlideCard__pagination">{sliderDots}</div>
+          <div className="SlideCard__paginationContainer">
+            <div className="SlideCard__pagination">{sliderDots}</div>
           </div>
         </>
-      ))}
+      )}
     </div >
   );
 };
