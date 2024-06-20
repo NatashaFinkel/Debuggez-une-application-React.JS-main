@@ -21,9 +21,9 @@ const Slider = () => {
   const sliderDots = byDateDesc?.map((_event, slideIndex) => (
     <div
       // eslint-disable-next-line react/no-array-index-key
-      key={slideIndex}
+      key={`dot-${slideIndex +1}`}
       className={`dot ${index === slideIndex ? 'active' : ''}`}
-      id={`slide-numéro-${slideIndex}-${_event.title}`}
+      id={`dot-${slideIndex +1}`}
     />
   ));
 
