@@ -13,7 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData();
+  const eventsArray = data?.events || [];
+  eventsArray.sort((a, b) => new Date(a.date) - new Date(b.date));
+  const last = eventsArray.length > 0 ? eventsArray[eventsArray.length - 1] : null;
   return <>
     <header>
       <Menu />
@@ -136,10 +139,10 @@ const Page = () => {
           <a href="#facebook" aria-label="facebook-icon-link">
             <Icon name="facebook" />
           </a>
-          <a href="#twitter" aria-label="twitter-icon-link"> 
+          <a href="#twitter" aria-label="twitter-icon-link">
             <Icon name="twitter" />
           </a>
-          <a href="#youtube" aria-label="youtube-icon-link"> 
+          <a href="#youtube" aria-label="youtube-icon-link">
             <Icon name="youtube" />
           </a>
         </div>
