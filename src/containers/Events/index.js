@@ -7,21 +7,28 @@ import ModalEvent from "../ModalEvent";
 
 import "./style.css";
 
-//  const PER_PAGE = 9;
-
+const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState(null);
-//  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const filteredEvents = (data?.events || []).filter(event => !type || event.type === type);
 
   const changeType = (evtType) => {
- //   setCurrentPage(1);
+    setCurrentPage(1);
     setType(evtType);
   };
 
+  function CreatePagination(events, maxPerPage) {
+    return Math.ceil((events?.length || 0) / maxPerPage);
+  }
+
   const typeList = Array.from(new Set(data?.events.map((event) => event.type)));
+
+  const pageNumber = CreatePagination(filteredEvents, PER_PAGE);
+
+  const paginatedFilteredEvents = filteredEvents.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
 
   return (
     <>
@@ -36,7 +43,7 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
-            {filteredEvents.map((event) => (
+            {paginatedFilteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
@@ -50,14 +57,14 @@ const EventList = () => {
               </Modal>
             ))}
           </div>
-          {/*  <div className="Pagination">
+          <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
               <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
               </a>
             ))}
-          </div> */}
+          </div>
         </>
       )}
     </>
