@@ -7,35 +7,21 @@ import ModalEvent from "../ModalEvent";
 
 import "./style.css";
 
-const PER_PAGE = 9;
+//  const PER_PAGE = 9;
+
 
 const EventList = () => {
   const { data, error } = useData();
-  const [type, setType] = useState();
-  const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
-  ).filter((_event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
+  const [type, setType] = useState(null);
+//  const [currentPage, setCurrentPage] = useState(1);
+  const filteredEvents = (data?.events || []).filter(event => !type || event.type === type);
+
   const changeType = (evtType) => {
-    setCurrentPage(1);
+ //   setCurrentPage(1);
     setType(evtType);
   };
-  function CreatePagination(events, maxPerPage) {
-    return Math.floor((events?.length || 0) / maxPerPage) + 1;
-  }
 
-  const typeList = new Set(data?.events.map((event) => event.type));
-  const pageNumber = CreatePagination(filteredEvents, PER_PAGE);
+  const typeList = Array.from(new Set(data?.events.map((event) => event.type)));
 
   return (
     <>
@@ -46,7 +32,7 @@ const EventList = () => {
         <>
           <h3 className="SelectTitle">Catégories</h3>
           <Select
-            selection={Array.from(typeList)}
+            selection={typeList}
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
@@ -64,14 +50,14 @@ const EventList = () => {
               </Modal>
             ))}
           </div>
-          <div className="Pagination">
+          {/*  <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
               <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
               </a>
             ))}
-          </div>
+          </div> */}
         </>
       )}
     </>
