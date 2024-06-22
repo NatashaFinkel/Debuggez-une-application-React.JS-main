@@ -115,13 +115,22 @@ p {
 }
 
 .Pagination {
+  margin-bottom: 50px;
+  display: flex;
+  font-weight: 900;
+
   a {
     color: white;
     text-decoration: none;
-    display: inline;
     margin: 2px;
+    width: 30px;
+    justify-content: center;
+    display: flex;
   }
-  margin-bottom: 50px;
+
+  .active{
+   background-color: black;
+  }
 }
 
 .SliderContainer {
