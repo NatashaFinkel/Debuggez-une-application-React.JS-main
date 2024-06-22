@@ -26,8 +26,6 @@ const EventList = () => {
 
   const typeList = Array.from(new Set(data?.events.map((event) => event.type)));
   const pageNumber = CreatePagination(filteredEvents, PER_PAGE);
-  
-  filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
   const paginatedFilteredEvents = filteredEvents.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE);
 
   return (
